@@ -39,5 +39,22 @@ namespace DataProvider.Helper
 				return new BasicDataResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError };
 			}
 		}
+
+		public static GetEventsResponse GetEvents(int userId)
+		{
+			try
+			{
+				using (var bdd = new popopopoEntities())
+				{
+					var results = bdd.Events.Where(e => e.creator_id == userId).ToList();
+
+					return new GetEventsResponse { Message = "Done", Status = HttpStatusCode.OK, Events = results };
+				}
+			}
+			catch (Exception)
+			{
+				return new GetEventsResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError, Events = new List<Event>()};
+			}
+		}
 	}
 }

@@ -96,5 +96,37 @@ namespace Myzorino.Controllers
 
 			}
 		}
+	
+		[HttpPost]
+		[Route("GetByUserId/{userId}")]
+		public HttpResponseMessage GetByUserId(string userId)
+		{
+			int userIdTemp;
+			if (!int.TryParse(userId, out userIdTemp))
+				return ToolsBoxResponse.OK(new BasicResponseModel
+				{
+					Message = "User is id not valid.",
+					Status = HttpStatusCode.BadRequest
+				});
+
+			var dbResponse = EventsHelper.GetEvents(userIdTemp);
+
+			switch (dbResponse.Status)
+			{
+				case HttpStatusCode.OK:
+					return ToolsBoxResponse.OK(new GetEventsResponseModel
+					{
+						Status = HttpStatusCode.OK,
+						Message = "Ok",
+						Events = dbResponse.Events
+					});
+				default:
+					return ToolsBoxResponse.OK(new BasicResponseModel
+					{
+						Message = dbResponse.Message,
+						Status = dbResponse.Status
+					});
+			}
+		}
 	}
 }

@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientResponse\AddEventsResponse.cs" />
+    <Compile Include="ClientResponse\GetEventsResponse.cs" />
     <Compile Include="Helper\AccountHelper.cs" />
     <Compile Include="Helper\ApiKeysHelper.cs" />
     <Compile Include="ClientResponse\BasicDataResponse.cs" />
