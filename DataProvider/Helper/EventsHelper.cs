@@ -39,44 +39,5 @@ namespace DataProvider.Helper
 				return new BasicDataResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError };
 			}
 		}
-
-		public static AddEventsResponse AddEvents(List<Event> es)
-		{
-			if (es == null)
-				return new AddEventsResponse { Message = "request is null", Status = HttpStatusCode.BadRequest, ErrorEvents = new List<Event>() };
-
-			try
-			{
-				List<Event> errors = new List<Event>();
-				foreach(var e in es)
-				{
-					var dbResponse = AddEvent(e);
-
-					if(dbResponse == null || 
-						dbResponse.Status != HttpStatusCode.OK)
-					{
-						errors.Add(e);
-					}
-				}
-
-				if(errors.Count == es.Count)
-					return new AddEventsResponse
-					{
-						Message = errors.Count == 0 ? "Done" : "Done With Errors",
-						Status = HttpStatusCode.BadRequest,
-						ErrorEvents = errors
-					};
-
-				return new AddEventsResponse { 
-					Message = errors.Count == 0 ? "Done" : "Done With Errors",
-					Status = HttpStatusCode.OK,
-					ErrorEvents = errors
-				};
-			}
-			catch (Exception)
-			{
-				return new AddEventsResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError, ErrorEvents = new List<Event>() };
-			}
-		}
 	}
 }
