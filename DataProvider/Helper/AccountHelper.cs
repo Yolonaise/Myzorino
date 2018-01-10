@@ -244,7 +244,7 @@ namespace DataProvider
 
 				return new CreateAccountResponse { Message = "OK", Status = HttpStatusCode.OK, Id = account.ID};
 			}
-			catch (InvalidOperationException)
+			catch (Exception)
 			{
 				return new CreateAccountResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError };
 			}
