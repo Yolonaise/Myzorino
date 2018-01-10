@@ -7,6 +7,7 @@
       <Diagram DiagramId="a56b636f108c466e8ecc60c18bae4c28" Name="Diagram1">
         <EntityTypeShape EntityType="popopopoModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="popopopoModel.ApiKey" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="popopopoModel.Event" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
