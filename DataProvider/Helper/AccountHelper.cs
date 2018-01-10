@@ -63,6 +63,29 @@ namespace DataProvider
 			}
 		}
 
+		public static BasicDataResponse ExistsWithId(int id)
+		{
+			try
+			{
+				using (Models.popopopoEntities bdd = new popopopoEntities())
+				{
+					var receipt = bdd.Accounts.Where(a => a.ID == id).ToList();
+
+					if (receipt.Count == 0)
+						return new BasicDataResponse { Message = "No user found whit this login", Status = HttpStatusCode.BadRequest };
+
+					var account = receipt[0];
+					if (account == null)
+						return new BasicDataResponse { Message = "No user found whit this login", Status = HttpStatusCode.BadRequest };
+				}
+				return new BasicDataResponse { Message = "OK", Status = HttpStatusCode.OK };
+			}
+			catch (InvalidOperationException)
+			{
+				return new BasicDataResponse { Message = "SQLError", Status = HttpStatusCode.InternalServerError };
+			}
+		}
+
 		public static BasicDataResponse ExistsWithEmail(string email, string password)
 		{
 			try

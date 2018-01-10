@@ -47,11 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountHelper.cs" />
-    <Compile Include="ApiKeysHelper.cs" />
+    <Compile Include="ClientResponse\AddEventsResponse.cs" />
+    <Compile Include="Helper\AccountHelper.cs" />
+    <Compile Include="Helper\ApiKeysHelper.cs" />
     <Compile Include="ClientResponse\BasicDataResponse.cs" />
     <Compile Include="ClientResponse\CreateAccountResponse.cs" />
     <Compile Include="ClientResponse\GetUserInfoResponse.cs" />
+    <Compile Include="Helper\EventsHelper.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>PopopoModel.tt</DependentUpon>
     </Compile>

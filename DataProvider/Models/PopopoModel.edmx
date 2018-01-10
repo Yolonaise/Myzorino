@@ -27,10 +27,13 @@ warning 6002: The table/view 'popopopo.dbo.Events' does not have a primary key d
             <PropertyRef Name="id" />
             <PropertyRef Name="created_date" />
             <PropertyRef Name="creator_id" />
+            <PropertyRef Name="start_date" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="created_date" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="creator_id" Type="int" Nullable="false" />
+          <Property Name="end_date" Type="varchar" MaxLength="200" />
+          <Property Name="start_date" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityContainer Name="popopopoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -39,7 +42,9 @@ warning 6002: The table/view 'popopopo.dbo.Events' does not have a primary key d
             <DefiningQuery>SELECT 
 [Events].[id] AS [id], 
 [Events].[created_date] AS [created_date], 
-[Events].[creator_id] AS [creator_id]
+[Events].[creator_id] AS [creator_id], 
+[Events].[end_date] AS [end_date], 
+[Events].[start_date] AS [start_date]
 FROM [dbo].[Events] AS [Events]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -72,10 +77,13 @@ FROM [dbo].[Events] AS [Events]</DefiningQuery>
             <PropertyRef Name="id" />
             <PropertyRef Name="created_date" />
             <PropertyRef Name="creator_id" />
+            <PropertyRef Name="start_date" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="creator_id" Type="Int32" Nullable="false" />
+          <Property Name="end_date" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -103,6 +111,8 @@ FROM [dbo].[Events] AS [Events]</DefiningQuery>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="popopopoModel.Event">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
                 <ScalarProperty Name="creator_id" ColumnName="creator_id" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
