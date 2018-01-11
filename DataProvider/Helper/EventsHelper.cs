@@ -42,6 +42,7 @@ namespace DataProvider.Helper
 
 		public static GetEventsResponse GetEvents(int userId, DateTime start, DateTime end, int nb)
 		{
+			//TODO : See why when the requested Date contains hours, dosn't work !
 			try
 			{
 				using (var bdd = new popopopoEntities())
