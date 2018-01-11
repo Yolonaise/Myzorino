@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Models\RequestModels\AddEventRequestModel.cs" />
     <Compile Include="Models\RequestModels\AddEventsRequestModel.cs" />
+    <Compile Include="Models\RequestModels\GetUserEventsRequest.cs" />
     <Compile Include="Models\RequestModels\RegistrationRequestModel.cs" />
     <Compile Include="Models\RequestModels\UserInfoRequestModel.cs" />
     <Compile Include="Models\ResponseModels\BasicResponseModel.cs" />

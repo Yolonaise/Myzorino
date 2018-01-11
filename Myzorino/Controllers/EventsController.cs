@@ -55,8 +55,8 @@ namespace Myzorino.Controllers
 					Status = HttpStatusCode.BadRequest
 				});
 
-			DateTime end;
-			if (string.IsNullOrEmpty(request.EndDate) &&
+			DateTime end = start;
+			if (!string.IsNullOrEmpty(request.EndDate) &&
 				!DateTime.TryParse(request.EndDate, out end))
 				return ToolsBoxResponse.OK(new BasicResponseModel
 				{
@@ -66,10 +66,10 @@ namespace Myzorino.Controllers
 
 			var dbResponse = EventsHelper.AddEvent(new Event
 				{
-					created_date = DateTime.Now.ToString(),
+					created_date = DateTime.Now,
 					creator_id = creatorIdTemp,
-					end_date = request.EndDate,
-					start_date = request.StartDate
+					end_date = end,
+					start_date = start
 				});
 
 			if(dbResponse == null)
@@ -98,18 +98,45 @@ namespace Myzorino.Controllers
 		}
 	
 		[HttpPost]
-		[Route("GetByUserId/{userId}")]
-		public HttpResponseMessage GetByUserId(string userId)
+		[Route("GetByUserId")]
+		public HttpResponseMessage GetByUserId(GetUserEventsRequest request)
 		{
-			int userIdTemp;
-			if (!int.TryParse(userId, out userIdTemp))
+			if(request == null)
 				return ToolsBoxResponse.OK(new BasicResponseModel
 				{
-					Message = "User is id not valid.",
+					Message = "Request is empty",
 					Status = HttpStatusCode.BadRequest
 				});
 
-			var dbResponse = EventsHelper.GetEvents(userIdTemp);
+			int userIdTemp;
+			if (!int.TryParse(request.CreatorId, out userIdTemp))
+				return ToolsBoxResponse.OK(new BasicResponseModel
+				{
+					Message = "User id is not valid.",
+					Status = HttpStatusCode.BadRequest
+				});
+
+			DateTime start = DateTime.MinValue; 
+			if(!string.IsNullOrEmpty(request.StartDate) && 
+				!DateTime.TryParse(request.StartDate, out start))
+				return ToolsBoxResponse.OK(new BasicResponseModel
+				{
+					Message = "Start date is not valid.",
+					Status = HttpStatusCode.BadRequest
+				});
+
+			DateTime end = string.IsNullOrEmpty(request.StartDate) ? DateTime.MaxValue : start;
+			if (!string.IsNullOrEmpty(request.EndDate) &&
+				!DateTime.TryParse(request.EndDate, out end))
+				return ToolsBoxResponse.OK(new BasicResponseModel
+				{
+					Message = "End date is not valid.",
+					Status = HttpStatusCode.BadRequest
+				});
+
+			request.Number = request.Number < 0 ? int.MaxValue : request.Number;
+			
+			var dbResponse = EventsHelper.GetEvents(userIdTemp, start, end, request.Number);
 
 			switch (dbResponse.Status)
 			{

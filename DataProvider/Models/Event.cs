@@ -15,9 +15,9 @@ namespace DataProvider.Models
     public partial class Event
     {
         public int id { get; set; }
-        public string created_date { get; set; }
-        public Nullable<int> creator_id { get; set; }
-        public string end_date { get; set; }
-        public string start_date { get; set; }
+        public System.DateTime created_date { get; set; }
+        public int creator_id { get; set; }
+        public System.DateTime end_date { get; set; }
+        public System.DateTime start_date { get; set; }
     }
 }

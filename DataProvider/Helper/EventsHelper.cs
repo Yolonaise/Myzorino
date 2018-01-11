@@ -40,13 +40,18 @@ namespace DataProvider.Helper
 			}
 		}
 
-		public static GetEventsResponse GetEvents(int userId)
+		public static GetEventsResponse GetEvents(int userId, DateTime start, DateTime end, int nb)
 		{
 			try
 			{
 				using (var bdd = new popopopoEntities())
 				{
-					var results = bdd.Events.Where(e => e.creator_id == userId).ToList();
+					var results = bdd.Events.Where(e => e.creator_id == userId && 
+														e.start_date >= start &&
+														e.end_date <= end)
+														.OrderBy(e => e.start_date)
+														.Take(nb)
+														.ToList();
 
 					return new GetEventsResponse { Message = "Done", Status = HttpStatusCode.OK, Events = results };
 				}
