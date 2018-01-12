@@ -68,7 +68,7 @@ namespace Myzorino.Controllers
 					return ToolsBoxResponse.OK(new RegistrationResponseModel
 					{
 						Token = TokenProvider.Generate(account.username, account.password),
-						Id = response.Id.ToString(),
+						Id = response.Id,
 						Status = HttpStatusCode.OK
 					});
 				case HttpStatusCode.BadRequest:
@@ -133,7 +133,7 @@ namespace Myzorino.Controllers
 				case HttpStatusCode.OK:
 					return ToolsBoxResponse.OK(new RegistrationResponseModel
 					{
-						Id = dbResponse.Account.ID.ToString(),
+						Id = dbResponse.Account.ID,
 						Token = TokenProvider.Generate(account.username, account.password),
 						Status = HttpStatusCode.OK
 					});
@@ -162,7 +162,7 @@ namespace Myzorino.Controllers
 				case HttpStatusCode.OK:
 					return ToolsBoxResponse.OK(new RegistrationResponseModel
 					{
-						Id = dbResponse.Account.ID.ToString(),
+						Id = dbResponse.Account.ID,
 						Token = TokenProvider.Generate(account.username, account.password),
 						Status = HttpStatusCode.OK
 					});

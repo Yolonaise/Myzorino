@@ -29,15 +29,7 @@ namespace Myzorino.Controllers
 					Status = HttpStatusCode.BadRequest
 				});
 
-			int creatorIdTemp;
-			if (!int.TryParse(request.CreatorId, out creatorIdTemp))
-				return ToolsBoxResponse.OK(new BasicResponseModel
-				{
-					Message = "Creator id is wrong.",
-					Status = HttpStatusCode.BadRequest
-				});
-
-			var dbPlayerResponse = AccountHelper.ExistsWithId(creatorIdTemp);
+			var dbPlayerResponse = AccountHelper.ExistsWithId(request.CreatorId);
 
 			if(dbPlayerResponse == null ||
 				dbPlayerResponse.Status != HttpStatusCode.OK)
@@ -67,7 +59,7 @@ namespace Myzorino.Controllers
 			var dbResponse = EventsHelper.AddEvent(new Event
 				{
 					created_date = DateTime.Now,
-					creator_id = creatorIdTemp,
+					creator_id = request.CreatorId,
 					end_date = end,
 					start_date = start
 				});
@@ -108,14 +100,6 @@ namespace Myzorino.Controllers
 					Status = HttpStatusCode.BadRequest
 				});
 
-			int userIdTemp;
-			if (!int.TryParse(request.CreatorId, out userIdTemp))
-				return ToolsBoxResponse.OK(new BasicResponseModel
-				{
-					Message = "User id is not valid.",
-					Status = HttpStatusCode.BadRequest
-				});
-
 			DateTime start = DateTime.MinValue; 
 			if(!string.IsNullOrEmpty(request.StartDate) && 
 				!DateTime.TryParse(request.StartDate, out start))
@@ -136,7 +120,7 @@ namespace Myzorino.Controllers
 
 			request.Number = request.Number < 0 ? int.MaxValue : request.Number;
 			
-			var dbResponse = EventsHelper.GetEvents(userIdTemp, start, end, request.Number);
+			var dbResponse = EventsHelper.GetEvents(request.CreatorId, start, end, request.Number);
 
 			switch (dbResponse.Status)
 			{

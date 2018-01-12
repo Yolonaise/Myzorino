@@ -44,7 +44,7 @@ namespace Myzorino.Controllers
 					{
 						Status = HttpStatusCode.OK,
 						Message = "OK",
-						Id = dbResponse.Account.ID.ToString(),
+						Id = dbResponse.Account.ID,
 						Username = dbResponse.Account.username,
 						Email = dbResponse.Account.email
 					});
@@ -76,7 +76,7 @@ namespace Myzorino.Controllers
 					{
 						Status = HttpStatusCode.OK,
 						Message = "OK",
-						Id = dbResponse.Account.ID.ToString(),
+						Id = dbResponse.Account.ID,
 						Username = dbResponse.Account.username,
 						Email = dbResponse.Account.email
 					});

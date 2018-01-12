@@ -10,7 +10,7 @@ namespace Myzorino.Models.RequestModels
 	public class GetUserEventsRequest
 	{
 		[JsonProperty(PropertyName = "creatorId")]
-		public string CreatorId { get; set; }
+		public int CreatorId { get; set; }
 
 		[JsonProperty(PropertyName = "startDate")]
 		public string StartDate { get; set; }
@@ -20,5 +20,12 @@ namespace Myzorino.Models.RequestModels
 
 		[JsonProperty(PropertyName = "number")]
 		public int Number{ get; set; }
+	}
+
+	public class Personne
+	{
+		public string Nom;
+		public string Prenom;
+		public int age;
 	}
 }

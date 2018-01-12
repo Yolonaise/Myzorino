@@ -15,6 +15,6 @@ namespace Myzorino.Models.RequestModels
 		public string Email { get; set; }
 
 		[JsonProperty(PropertyName = "id")]
-		public string Id { get; set; }
+		public int Id { get; set; }
 	}
 }

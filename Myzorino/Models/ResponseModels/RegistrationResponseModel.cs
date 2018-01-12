@@ -13,6 +13,6 @@ namespace Myzorino.Models.ResponseModels
 		public string Token;
 
 		[JsonProperty(PropertyName = "id")]
-		public string Id;
+		public int Id;
 	}
 }
