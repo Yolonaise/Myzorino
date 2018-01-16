@@ -46,6 +46,7 @@ namespace Tools
 				return new NewtonsoftJsonSerializer(new Newtonsoft.Json.JsonSerializer()
 				{
 					NullValueHandling = NullValueHandling.Ignore,
+					DateFormatString = "yyyy-MM-dd hh:mm:ss"
 				});
 			}
 		}
@@ -80,6 +81,7 @@ namespace Tools
 				return new NewtonsoftJsonDeserializer(new Newtonsoft.Json.JsonSerializer()
 				{
 					NullValueHandling = NullValueHandling.Ignore,
+					DateFormatString = "yyyy-MM-dd hh:mm:ss"
 				});
 			}
 		}

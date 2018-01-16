@@ -21,11 +21,4 @@ namespace Myzorino.Models.RequestModels
 		[JsonProperty(PropertyName = "number")]
 		public int Number{ get; set; }
 	}
-
-	public class Personne
-	{
-		public string Nom;
-		public string Prenom;
-		public int age;
-	}
 }
