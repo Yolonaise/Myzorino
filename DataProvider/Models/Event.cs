@@ -19,5 +19,7 @@ namespace DataProvider.Models
         public int creator_id { get; set; }
         public System.DateTime end_date { get; set; }
         public System.DateTime start_date { get; set; }
+        public string titre { get; set; }
+        public string description { get; set; }
     }
 }

@@ -16,5 +16,11 @@ namespace Myzorino.Models.RequestModels
 
 		[JsonProperty(PropertyName = "endDate")]
 		public string EndDate { get; set; }
+
+		[JsonProperty(PropertyName = "titre")]
+		public string Titre { get; set; }
+
+		[JsonProperty(PropertyName = "description")]
+		public string Description{ get; set; }
 	}
 }

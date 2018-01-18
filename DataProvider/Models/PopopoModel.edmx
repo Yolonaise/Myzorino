@@ -29,6 +29,8 @@
           <Property Name="creator_id" Type="int" Nullable="false" />
           <Property Name="end_date" Type="date" Nullable="false" />
           <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="titre" Type="varchar" MaxLength="250" />
+          <Property Name="description" Type="text" />
         </EntityType>
         <EntityContainer Name="popopopoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -68,6 +70,8 @@
           <Property Name="creator_id" Type="Int32" Nullable="false" />
           <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="titre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -95,6 +99,8 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="popopopoModel.Event">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="titre" ColumnName="titre" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
                 <ScalarProperty Name="creator_id" ColumnName="creator_id" />

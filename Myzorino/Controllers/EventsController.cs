@@ -61,7 +61,9 @@ namespace Myzorino.Controllers
 					created_date = DateTime.Now,
 					creator_id = request.CreatorId,
 					end_date = end,
-					start_date = start
+					start_date = start,
+					titre = request.Titre,
+					description = request.Description
 				});
 
 			if(dbResponse == null)
